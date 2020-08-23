@@ -23,6 +23,7 @@ class CardView: UIView {
                 barsStackView.addArrangedSubview(barView)
             }
             barsStackView.arrangedSubviews.first?.backgroundColor = .white
+            setupImageObserver()
         }
     }
 
@@ -30,8 +31,8 @@ class CardView: UIView {
     fileprivate let informationLabel = UILabel()
     fileprivate let gradientLayer = CAGradientLayer()
     fileprivate let threshold: CGFloat = 80
-    fileprivate var imageIndex = 0
     fileprivate let barDeselectionColor = UIColor(white: 0, alpha: 0.1)
+    fileprivate let barsStackView = UIStackView()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -47,22 +48,14 @@ class CardView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-
-
     @objc fileprivate func handleTap(_ gesture: UITapGestureRecognizer) {
         let tapLocation = gesture.location(in: nil)
         let shouldAdvanceNextPhoto = tapLocation.x > frame.width / 2 ? true : false
         if shouldAdvanceNextPhoto {
-            imageIndex = min(imageIndex + 1, cardViewModel.imageNames.count - 1)
+            cardViewModel.advanceToNextPhoto()
         } else {
-            imageIndex = max(0, imageIndex - 1)
+            cardViewModel.goToPreviousPhoto()
         }
-        let imageName = cardViewModel.imageNames[imageIndex]
-        imageView.image = UIImage(named: imageName)
-        barsStackView.arrangedSubviews.forEach { (v) in
-            v.backgroundColor = barDeselectionColor
-        }
-        barsStackView.arrangedSubviews[imageIndex].backgroundColor = .white
     }
 
     @objc fileprivate func handlePan(gesture: UIPanGestureRecognizer) {
@@ -150,8 +143,6 @@ class CardView: UIView {
         informationLabel.numberOfLines = 0
     }
 
-    fileprivate let barsStackView = UIStackView()
-
     fileprivate func setupBarsStackView() {
         addSubview(barsStackView)
         barsStackView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 8, left: 8, bottom: 0, right: 8), size: .init(width: 0, height: 4))
@@ -159,6 +150,16 @@ class CardView: UIView {
         barsStackView.spacing = 4
         barsStackView.distribution = .fillEqually
 
+    }
+
+    fileprivate func setupImageObserver() {
+        cardViewModel.imageIndexObserver = { [weak self] (idx, image) in
+            self?.imageView.image = image
+            self?.barsStackView.arrangedSubviews.forEach { (v) in
+                v.backgroundColor = self?.barDeselectionColor
+            }
+            self?.barsStackView.arrangedSubviews[idx].backgroundColor = .white
+        }
     }
 
 }

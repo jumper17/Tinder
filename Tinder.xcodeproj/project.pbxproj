@@ -9,13 +9,14 @@
 /* Begin PBXBuildFile section */
 		A605EF9224EEFA4F000EBE43 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A605EF9124EEFA4F000EBE43 /* CardViewModel.swift */; };
 		A605EF9424EF04EF000EBE43 /* Advertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A605EF9324EF04EF000EBE43 /* Advertiser.swift */; };
+		A605EF9824F2AF7B000EBE43 /* Extensions+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A605EF9724F2AF7B000EBE43 /* Extensions+UIView.swift */; };
+		A605EF9A24F2C36E000EBE43 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A605EF9924F2C36E000EBE43 /* RegistrationController.swift */; };
+		A605EF9C24F2C7E6000EBE43 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A605EF9B24F2C7E6000EBE43 /* CustomTextField.swift */; };
 		A690FACE24E9D1B5009DCB35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A690FACD24E9D1B5009DCB35 /* AppDelegate.swift */; };
-		A690FAD024E9D1B5009DCB35 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A690FACF24E9D1B5009DCB35 /* SceneDelegate.swift */; };
 		A690FAD224E9D1B5009DCB35 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A690FAD124E9D1B5009DCB35 /* HomeController.swift */; };
 		A690FAD524E9D1B5009DCB35 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A690FAD324E9D1B5009DCB35 /* Main.storyboard */; };
 		A690FAD724E9D1B8009DCB35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A690FAD624E9D1B8009DCB35 /* Assets.xcassets */; };
 		A690FADA24E9D1B8009DCB35 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A690FAD824E9D1B8009DCB35 /* LaunchScreen.storyboard */; };
-		A690FAE324E9D7F1009DCB35 /* Extensions+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A690FAE224E9D7F1009DCB35 /* Extensions+UIView.swift */; };
 		A690FAE624E9DE89009DCB35 /* HomeBottomControlsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A690FAE524E9DE89009DCB35 /* HomeBottomControlsStackView.swift */; };
 		A690FAE824E9E4C7009DCB35 /* TopNavigationStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A690FAE724E9E4C7009DCB35 /* TopNavigationStackView.swift */; };
 		A690FAFE24EAEBA8009DCB35 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A690FAFD24EAEBA8009DCB35 /* CardView.swift */; };
@@ -25,15 +26,16 @@
 /* Begin PBXFileReference section */
 		A605EF9124EEFA4F000EBE43 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		A605EF9324EF04EF000EBE43 /* Advertiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertiser.swift; sourceTree = "<group>"; };
+		A605EF9724F2AF7B000EBE43 /* Extensions+UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extensions+UIView.swift"; sourceTree = "<group>"; };
+		A605EF9924F2C36E000EBE43 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
+		A605EF9B24F2C7E6000EBE43 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		A690FACA24E9D1B5009DCB35 /* Tinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A690FACD24E9D1B5009DCB35 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A690FACF24E9D1B5009DCB35 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A690FAD124E9D1B5009DCB35 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		A690FAD424E9D1B5009DCB35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A690FAD624E9D1B8009DCB35 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A690FAD924E9D1B8009DCB35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A690FADB24E9D1B8009DCB35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A690FAE224E9D7F1009DCB35 /* Extensions+UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Extensions+UIView.swift"; path = "../../../../../Downloads/Tinder Firestore Swipe and Match/01. Laying Out User Interface/SwipeMatchFirestoreLBTA/SwipeMatchFirestoreLBTA/Extensions/Extensions+UIView.swift"; sourceTree = "<group>"; };
 		A690FAE524E9DE89009DCB35 /* HomeBottomControlsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBottomControlsStackView.swift; sourceTree = "<group>"; };
 		A690FAE724E9E4C7009DCB35 /* TopNavigationStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopNavigationStackView.swift; sourceTree = "<group>"; };
 		A690FAFD24EAEBA8009DCB35 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
@@ -55,6 +57,7 @@
 			isa = PBXGroup;
 			children = (
 				A690FAD124E9D1B5009DCB35 /* HomeController.swift */,
+				A605EF9924F2C36E000EBE43 /* RegistrationController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -92,7 +95,6 @@
 				A690FAE424E9DE53009DCB35 /* Views */,
 				A690FAE124E9D7CB009DCB35 /* Extensions */,
 				A690FACD24E9D1B5009DCB35 /* AppDelegate.swift */,
-				A690FACF24E9D1B5009DCB35 /* SceneDelegate.swift */,
 				A690FAD324E9D1B5009DCB35 /* Main.storyboard */,
 				A690FAD624E9D1B8009DCB35 /* Assets.xcassets */,
 				A690FAD824E9D1B8009DCB35 /* LaunchScreen.storyboard */,
@@ -104,7 +106,7 @@
 		A690FAE124E9D7CB009DCB35 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				A690FAE224E9D7F1009DCB35 /* Extensions+UIView.swift */,
+				A605EF9724F2AF7B000EBE43 /* Extensions+UIView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -115,6 +117,7 @@
 				A690FAE524E9DE89009DCB35 /* HomeBottomControlsStackView.swift */,
 				A690FAE724E9E4C7009DCB35 /* TopNavigationStackView.swift */,
 				A690FAFD24EAEBA8009DCB35 /* CardView.swift */,
+				A605EF9B24F2C7E6000EBE43 /* CustomTextField.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -200,14 +203,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				A605EF9424EF04EF000EBE43 /* Advertiser.swift in Sources */,
+				A605EF9C24F2C7E6000EBE43 /* CustomTextField.swift in Sources */,
 				A690FAFE24EAEBA8009DCB35 /* CardView.swift in Sources */,
 				A690FAD224E9D1B5009DCB35 /* HomeController.swift in Sources */,
 				A690FACE24E9D1B5009DCB35 /* AppDelegate.swift in Sources */,
+				A605EF9824F2AF7B000EBE43 /* Extensions+UIView.swift in Sources */,
 				A690FAE624E9DE89009DCB35 /* HomeBottomControlsStackView.swift in Sources */,
+				A605EF9A24F2C36E000EBE43 /* RegistrationController.swift in Sources */,
 				A690FB0624EC8DA5009DCB35 /* User.swift in Sources */,
 				A690FAE824E9E4C7009DCB35 /* TopNavigationStackView.swift in Sources */,
-				A690FAE324E9D7F1009DCB35 /* Extensions+UIView.swift in Sources */,
-				A690FAD024E9D1B5009DCB35 /* SceneDelegate.swift in Sources */,
 				A605EF9224EEFA4F000EBE43 /* CardViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
