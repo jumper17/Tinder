@@ -15,6 +15,7 @@
 		A605EF9C24F2C7E6000EBE43 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A605EF9B24F2C7E6000EBE43 /* CustomTextField.swift */; };
 		A605EF9E24F2E093000EBE43 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A605EF9D24F2E093000EBE43 /* RegistrationViewModel.swift */; };
 		A605EFA024F2E9D7000EBE43 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A605EF9F24F2E9D7000EBE43 /* GoogleService-Info.plist */; };
+		A605EFA224F2FE47000EBE43 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A605EFA124F2FE47000EBE43 /* Bindable.swift */; };
 		A690FACE24E9D1B5009DCB35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A690FACD24E9D1B5009DCB35 /* AppDelegate.swift */; };
 		A690FAD224E9D1B5009DCB35 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A690FAD124E9D1B5009DCB35 /* HomeController.swift */; };
 		A690FAD524E9D1B5009DCB35 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A690FAD324E9D1B5009DCB35 /* Main.storyboard */; };
@@ -34,6 +35,7 @@
 		A605EF9B24F2C7E6000EBE43 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		A605EF9D24F2E093000EBE43 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		A605EF9F24F2E9D7000EBE43 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A605EFA124F2FE47000EBE43 /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		A690FACA24E9D1B5009DCB35 /* Tinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A690FACD24E9D1B5009DCB35 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A690FAD124E9D1B5009DCB35 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				A690FAD124E9D1B5009DCB35 /* HomeController.swift */,
 				A605EF9924F2C36E000EBE43 /* RegistrationController.swift */,
 				A605EF9D24F2E093000EBE43 /* RegistrationViewModel.swift */,
+				A605EFA124F2FE47000EBE43 /* Bindable.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A605EFA224F2FE47000EBE43 /* Bindable.swift in Sources */,
 				A605EF9424EF04EF000EBE43 /* Advertiser.swift in Sources */,
 				A605EF9E24F2E093000EBE43 /* RegistrationViewModel.swift in Sources */,
 				A605EF9C24F2C7E6000EBE43 /* CustomTextField.swift in Sources */,
