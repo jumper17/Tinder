@@ -16,6 +16,8 @@
 		A605EF9E24F2E093000EBE43 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A605EF9D24F2E093000EBE43 /* RegistrationViewModel.swift */; };
 		A605EFA024F2E9D7000EBE43 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A605EF9F24F2E9D7000EBE43 /* GoogleService-Info.plist */; };
 		A605EFA224F2FE47000EBE43 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A605EFA124F2FE47000EBE43 /* Bindable.swift */; };
+		A605EFAD24F58D5A000EBE43 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A605EFAC24F58D5A000EBE43 /* SettingsController.swift */; };
+		A605EFAF24F594BF000EBE43 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A605EFAE24F594BF000EBE43 /* SettingsCell.swift */; };
 		A690FACE24E9D1B5009DCB35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A690FACD24E9D1B5009DCB35 /* AppDelegate.swift */; };
 		A690FAD224E9D1B5009DCB35 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A690FAD124E9D1B5009DCB35 /* HomeController.swift */; };
 		A690FAD524E9D1B5009DCB35 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A690FAD324E9D1B5009DCB35 /* Main.storyboard */; };
@@ -36,6 +38,8 @@
 		A605EF9D24F2E093000EBE43 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		A605EF9F24F2E9D7000EBE43 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A605EFA124F2FE47000EBE43 /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
+		A605EFAC24F58D5A000EBE43 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		A605EFAE24F594BF000EBE43 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		A690FACA24E9D1B5009DCB35 /* Tinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A690FACD24E9D1B5009DCB35 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A690FAD124E9D1B5009DCB35 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
@@ -88,6 +92,7 @@
 				A605EF9924F2C36E000EBE43 /* RegistrationController.swift */,
 				A605EF9D24F2E093000EBE43 /* RegistrationViewModel.swift */,
 				A605EFA124F2FE47000EBE43 /* Bindable.swift */,
+				A605EFAC24F58D5A000EBE43 /* SettingsController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -151,6 +156,7 @@
 				A690FAE724E9E4C7009DCB35 /* TopNavigationStackView.swift */,
 				A690FAFD24EAEBA8009DCB35 /* CardView.swift */,
 				A605EF9B24F2C7E6000EBE43 /* CustomTextField.swift */,
+				A605EFAE24F594BF000EBE43 /* SettingsCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -290,9 +296,11 @@
 				A605EF9824F2AF7B000EBE43 /* Extensions+UIView.swift in Sources */,
 				A690FAE624E9DE89009DCB35 /* HomeBottomControlsStackView.swift in Sources */,
 				A605EF9A24F2C36E000EBE43 /* RegistrationController.swift in Sources */,
+				A605EFAD24F58D5A000EBE43 /* SettingsController.swift in Sources */,
 				A690FB0624EC8DA5009DCB35 /* User.swift in Sources */,
 				A690FAE824E9E4C7009DCB35 /* TopNavigationStackView.swift in Sources */,
 				A605EF9224EEFA4F000EBE43 /* CardViewModel.swift in Sources */,
+				A605EFAF24F594BF000EBE43 /* SettingsCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,6 +447,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Tinder/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -457,6 +466,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Tinder/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

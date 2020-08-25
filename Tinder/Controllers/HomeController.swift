@@ -7,40 +7,70 @@
 //
 
 import UIKit
+import Firebase
+import JGProgressHUD
 
 class HomeController: UIViewController {
 
     let topStackView = TopNavigationStackView()
     let cardsDeckView = UIView()
-    let buttonsStackView = HomeBottomControlsStackView()
+    let bottomControl = HomeBottomControlsStackView()
 
-    let cardViewModels: [CardViewModel] = {
-        let producers = [
-            User(name: "Kelly", age: 23, profession: "Music DJ", imageNames: ["kelly1", "kelly2", "kelly3"]),
-            User(name: "Jane", age: 18, profession: "Teacher", imageNames: ["jane1", "jane2", "jane3"]),
-            Advertiser(title: "Slide out menu", brandName: "Lets build that app", posterPhotoName: "slide_out_menu_poster")
-        ] as [ProducesCardViewModel]
-
-        let viewModels = producers.map { $0.toCardViewModel() }
-        return viewModels
-    }()
+    var cardViewModels = [CardViewModel]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         topStackView.settingsButton.addTarget(self, action: #selector(handleSettings), for: .touchUpInside)
-
+        bottomControl.refreshButton.addTarget(self, action: #selector(handleRefresh), for: .touchUpInside)
         setupLayout()
-        setupDummyCards()
+        setupFirestoreUserCards()
+        fetchUserFromFirestore()
     }
 
     // MARK: - Fileprivate
 
-    @objc func handleSettings() {
-        let registrationController = RegistrationController()
-        present(registrationController, animated: true, completion: nil)
+    @objc fileprivate func handleRefresh() {
+        fetchUserFromFirestore()
     }
 
-    fileprivate func setupDummyCards() {
+    var lastFetchedUser: User?
+
+    fileprivate func fetchUserFromFirestore() {
+        let hud = JGProgressHUD(style: .dark)
+        hud.textLabel.text = "Fetching Users"
+        hud.show(in: view)
+        let query = Firestore.firestore().collection("users")
+        query.getDocuments { (snapshot, error) in
+            hud.dismiss()
+            if let error = error {
+                print("Failed to fetch users:", error)
+                return
+            }
+            snapshot?.documents.forEach({ (documentSnapchot) in
+                let userDictionary = documentSnapchot.data()
+                let user = User(dictionary: userDictionary)
+                self.cardViewModels.append(user.toCardViewModel())
+                self.lastFetchedUser = user
+                self.setupCadrdFromUser(user: user)
+            })
+        }
+    }
+
+    fileprivate func setupCadrdFromUser(user: User) {
+        let cardView = CardView(frame: .zero)
+        cardView.cardViewModel = user.toCardViewModel()
+        cardsDeckView.addSubview(cardView)
+        cardsDeckView.sendSubviewToBack(cardView)
+        cardView.fillSuperview()
+    }
+
+    @objc func handleSettings() {
+        let settingsController = SettingsController()
+        let navController = UINavigationController(rootViewController: settingsController)
+        present(navController, animated: true, completion: nil)
+    }
+
+    fileprivate func setupFirestoreUserCards() {
         cardViewModels.forEach { (cardVM) in
             let cardView = CardView(frame: .zero)
             cardView.cardViewModel = cardVM
@@ -50,7 +80,8 @@ class HomeController: UIViewController {
     }
 
     fileprivate func setupLayout() {
-        let overallStackView = UIStackView(arrangedSubviews: [topStackView, cardsDeckView, buttonsStackView])
+        view.backgroundColor = .white
+        let overallStackView = UIStackView(arrangedSubviews: [topStackView, cardsDeckView, bottomControl])
         overallStackView.axis = .vertical
         view.addSubview(overallStackView)
         overallStackView.anchor(top: view.safeAreaLayoutGuide.topAnchor,

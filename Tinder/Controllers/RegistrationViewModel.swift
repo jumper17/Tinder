@@ -46,24 +46,46 @@ class RegistrationViewModel {
                 return
             }
             print("successfully registered user:", result?.user.uid ?? "")
+            self.saveImageToFirebase(completion: completion)
+        }
+    }
 
-            let filename = UUID().uuidString
-            let ref = Storage.storage().reference(withPath: "/images/\(filename)")
-            let imageDate = self.bindableImage.value?.jpegData(compressionQuality: 0.75) ?? Data()
-            ref.putData(imageDate, metadata: nil) { (_, error) in
+    fileprivate func saveInfoToFirestore(imageUrl: String, completion: @escaping (Error?) -> ()) {
+        let uid = Auth.auth().currentUser?.uid ?? ""
+        let docData = [
+            "fullName": fullName ?? "",
+            "uid": uid,
+            "imageUrl": imageUrl
+        ]
+        let db = Firestore.firestore()
+        db.collection("users").document(uid).setData(docData) { (error) in
+            if let error = error {
+                completion(error)
+                return
+            }
+            completion(nil)
+        }
+    }
+
+    fileprivate func saveImageToFirebase(completion: @escaping (Error?) -> ()) {
+        let filename = UUID().uuidString
+        let ref = Storage.storage().reference(withPath: "/images/\(filename)")
+        let imageDate = self.bindableImage.value?.jpegData(compressionQuality: 0.75) ?? Data()
+        ref.putData(imageDate, metadata: nil) { (_, error) in
+            if let error = error {
+                completion(error)
+                return
+            }
+            print("Finished uploading image to storage")
+            ref.downloadURL { (url, error) in
                 if let error = error {
                     completion(error)
                     return
                 }
-                print("Finished uploading image to storage")
-                ref.downloadURL { (url, error) in
-                    if let error = error {
-                        completion(error)
-                        return
-                    }
-                    self.bindableIsRegistration.value = false
-                    print("Download url of our image is:", url?.absoluteString ?? "")
-                }
+                self.bindableIsRegistration.value = false
+                print("Download url of our image is:", url?.absoluteString ?? "")
+                let imageUrl = url?.absoluteString ?? ""
+                self.saveInfoToFirestore(imageUrl: imageUrl, completion: completion)
             }
         }
     }

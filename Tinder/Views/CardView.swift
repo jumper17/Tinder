@@ -7,13 +7,17 @@
 //
 
 import UIKit
+import SDWebImage
 
 class CardView: UIView {
 
     var cardViewModel: CardViewModel! {
         didSet {
             let imageName = cardViewModel.imageNames.first ?? ""
-            imageView.image = UIImage(named: imageName)
+            if let url = URL(string: imageName) {
+                imageView.sd_setImage(with: url)
+            }
+
             informationLabel.attributedText = cardViewModel.attributedString
             informationLabel.textAlignment = cardViewModel.textAligment
 
@@ -23,7 +27,7 @@ class CardView: UIView {
                 barsStackView.addArrangedSubview(barView)
             }
             barsStackView.arrangedSubviews.first?.backgroundColor = .white
-            setupImageObserver()
+            setupImageIndexObserver()
         }
     }
 
@@ -69,7 +73,7 @@ class CardView: UIView {
         case .ended:
             handleEnded(gesture)
         default:
-            break
+            ()
         }
     }
 
@@ -88,14 +92,14 @@ class CardView: UIView {
         let translationDirection: CGFloat = gesture.translation(in: nil).x > 0 ? 1 : -1
         let shouldDismissCard = abs(gesture.translation(in: nil).x) > threshold
 
-        UIView.animate(withDuration: 0.75,
+        UIView.animate(withDuration: 1,
                        delay: 0,
                        usingSpringWithDamping: 0.6,
                        initialSpringVelocity: 0.1,
                        options: .curveEaseOut,
                        animations: {
                         if shouldDismissCard {
-                            self.frame = CGRect(x: 1000 * translationDirection, y: 0, width: self.frame.width, height: self.frame.height)
+                            self.center = CGPoint(x: 1000 * translationDirection, y: 0)
                         } else {
                             self.transform = .identity
                         }
@@ -112,7 +116,6 @@ class CardView: UIView {
     fileprivate func setupGradientLayer() {
         gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
         gradientLayer.locations = [0.5, 1.1]
-        gradientLayer.frame = CGRect(x: 0, y: 0, width: 300, height: 400)
         layer.addSublayer(gradientLayer)
     }
 
@@ -152,9 +155,12 @@ class CardView: UIView {
 
     }
 
-    fileprivate func setupImageObserver() {
-        cardViewModel.imageIndexObserver = { [weak self] (idx, image) in
-            self?.imageView.image = image
+    fileprivate func setupImageIndexObserver() {
+        cardViewModel.imageIndexObserver = { [weak self] (idx, imageUrl) in
+            if let url = URL(string: imageUrl ?? "") {
+                self?.imageView.sd_setImage(with: url)
+            }
+
             self?.barsStackView.arrangedSubviews.forEach { (v) in
                 v.backgroundColor = self?.barDeselectionColor
             }
