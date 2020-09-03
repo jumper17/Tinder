@@ -27,6 +27,7 @@
 		A690FAE824E9E4C7009DCB35 /* TopNavigationStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A690FAE724E9E4C7009DCB35 /* TopNavigationStackView.swift */; };
 		A690FAFE24EAEBA8009DCB35 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A690FAFD24EAEBA8009DCB35 /* CardView.swift */; };
 		A690FB0624EC8DA5009DCB35 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A690FB0524EC8DA5009DCB35 /* User.swift */; };
+		A693714F25017E2300E40B4A /* AgeRangeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A693714E25017E2300E40B4A /* AgeRangeCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		A690FAE724E9E4C7009DCB35 /* TopNavigationStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopNavigationStackView.swift; sourceTree = "<group>"; };
 		A690FAFD24EAEBA8009DCB35 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		A690FB0524EC8DA5009DCB35 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		A693714E25017E2300E40B4A /* AgeRangeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeRangeCell.swift; sourceTree = "<group>"; };
 		B530DECAD26D58717593C5C6 /* Pods_Tinder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tinder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB359D3D6B1382F467C0E148 /* Pods-Tinder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tinder.release.xcconfig"; path = "Target Support Files/Pods-Tinder/Pods-Tinder.release.xcconfig"; sourceTree = "<group>"; };
 		D28DC1FDFEB384E492772D5B /* Pods-Tinder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tinder.debug.xcconfig"; path = "Target Support Files/Pods-Tinder/Pods-Tinder.debug.xcconfig"; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				A690FAFD24EAEBA8009DCB35 /* CardView.swift */,
 				A605EF9B24F2C7E6000EBE43 /* CustomTextField.swift */,
 				A605EFAE24F594BF000EBE43 /* SettingsCell.swift */,
+				A693714E25017E2300E40B4A /* AgeRangeCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 				A690FAFE24EAEBA8009DCB35 /* CardView.swift in Sources */,
 				A690FAD224E9D1B5009DCB35 /* HomeController.swift in Sources */,
 				A690FACE24E9D1B5009DCB35 /* AppDelegate.swift in Sources */,
+				A693714F25017E2300E40B4A /* AgeRangeCell.swift in Sources */,
 				A605EF9824F2AF7B000EBE43 /* Extensions+UIView.swift in Sources */,
 				A690FAE624E9DE89009DCB35 /* HomeBottomControlsStackView.swift in Sources */,
 				A605EF9A24F2C36E000EBE43 /* RegistrationController.swift in Sources */,
