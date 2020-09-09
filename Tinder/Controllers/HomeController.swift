@@ -23,11 +23,27 @@ class HomeController: UIViewController {
         topStackView.settingsButton.addTarget(self, action: #selector(handleSettings), for: .touchUpInside)
         bottomControl.refreshButton.addTarget(self, action: #selector(handleRefresh), for: .touchUpInside)
         setupLayout()
-        setupFirestoreUserCards()
-        fetchUserFromFirestore()
+        fetchCurrentUser()
+//        setupFirestoreUserCards()
+//        fetchUserFromFirestore()
     }
 
     // MARK: - Fileprivate
+
+    fileprivate var user: User?
+
+    fileprivate func fetchCurrentUser() {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        Firestore.firestore().collection("users").document(uid).getDocument { (snapshot, error) in
+            if let error = error {
+                print(error)
+                return
+            }
+            guard let dictionary = snapshot?.data() else { return }
+            self.user = User(dictionary: dictionary)
+            self.fetchUserFromFirestore()
+        }
+    }
 
     @objc fileprivate func handleRefresh() {
         fetchUserFromFirestore()
@@ -36,10 +52,12 @@ class HomeController: UIViewController {
     var lastFetchedUser: User?
 
     fileprivate func fetchUserFromFirestore() {
+        guard let minAge = user?.minSeekingAge, let maxAge = user?.maxSeekingAge else { return }
+
         let hud = JGProgressHUD(style: .dark)
         hud.textLabel.text = "Fetching Users"
         hud.show(in: view)
-        let query = Firestore.firestore().collection("users")
+        let query = Firestore.firestore().collection("users").whereField("age", isGreaterThanOrEqualTo: minAge).whereField("age", isLessThanOrEqualTo: maxAge)
         query.getDocuments { (snapshot, error) in
             hud.dismiss()
             if let error = error {
@@ -66,6 +84,7 @@ class HomeController: UIViewController {
 
     @objc func handleSettings() {
         let settingsController = SettingsController()
+        settingsController.delegate = self
         let navController = UINavigationController(rootViewController: settingsController)
         present(navController, animated: true, completion: nil)
     }
@@ -95,3 +114,8 @@ class HomeController: UIViewController {
 
 }
 
+extension HomeController: SettingsControllerDelegate {
+    func didSaveSettings() {
+        fetchCurrentUser()
+    }
+}

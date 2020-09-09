@@ -8,30 +8,37 @@
 
 import UIKit
 
-class SettingsCell: UITableViewCell {
+protocol SettingsCellDelegate: class {
+    func settingsCell(_ settingsCell: SettingsCell, textFieldEditingChanged value: String?)
+}
 
-    class SettingsTextField: UITextField {
-        override var intrinsicContentSize: CGSize {
-            return .init(width: 0, height: 44)
-        }
+final class SettingsCell: UITableViewCell {
 
-        override func textRect(forBounds bounds: CGRect) -> CGRect {
-            return bounds.insetBy(dx: 24, dy: 0)
-        }
+    // MARK: Public
 
-        override func editingRect(forBounds bounds: CGRect) -> CGRect {
-            return bounds.insetBy(dx: 24, dy: 0)
+    var textCell: String? {
+        set {
+            textField.text = newValue
         }
+        get { textField.text }
     }
 
-    let textField: UITextField = {
-        let tf = SettingsTextField()
-        tf.placeholder = "Enter name"
-        return tf
-    }()
+    var placeholderCell: String? {
+        set {
+            textField.placeholder = newValue
+        }
+        get { textField.placeholder }
+    }
+
+    weak var delegate: SettingsCellDelegate?
+
+    // MARK: Private
+
+    private let textField = SettingsTextField()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        textField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
 
         addSubview(textField)
         textField.fillSuperview()
@@ -39,6 +46,10 @@ class SettingsCell: UITableViewCell {
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    @objc fileprivate func handleTextChange() {
+        delegate?.settingsCell(self, textFieldEditingChanged: textField.text)
     }
 
 }

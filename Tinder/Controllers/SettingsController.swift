@@ -11,13 +11,13 @@ import Firebase
 import JGProgressHUD
 import SDWebImage
 
-class CustomImagePickerController: UIImagePickerController {
-
-    var imageButton: UIButton?
-
+protocol SettingsControllerDelegate {
+    func didSaveSettings()
 }
 
 class SettingsController: UITableViewController {
+
+    var delegate: SettingsControllerDelegate?
 
     lazy var image1Button = createButton(selector: #selector(handleSelectPhoto))
     lazy var image2Button = createButton(selector: #selector(handleSelectPhoto))
@@ -119,6 +119,10 @@ class SettingsController: UITableViewController {
                 return
             }
             print("Finished saving user info")
+            self.dismiss(animated: true) {
+                print("Dismissal complete")
+                self.delegate?.didSaveSettings()
+            }
         }
     }
 
@@ -187,64 +191,36 @@ class SettingsController: UITableViewController {
         return section == 0 ? 0 : 1
     }
 
-    @objc fileprivate func handleMinAgeChange(slider: UISlider) {
-        let indexPath = IndexPath(row: 0, section: 5)
-        let ageRangeCell = tableView.cellForRow(at: indexPath) as! AgeRangeCell
-        ageRangeCell.minLabel.text = "Min: \(Int(slider.value))"
-        self.user?.minSeekingAge = Int(slider.value)
-    }
-
-    @objc fileprivate func handleMaxAgeChange(slider: UISlider) {
-        let indexPath = IndexPath(row: 0, section: 5)
-        let ageRangeCell = tableView.cellForRow(at: indexPath) as! AgeRangeCell
-        ageRangeCell.maxLabel.text = "Max: \(Int(slider.value))"
-        self.user?.maxSeekingAge = Int(slider.value)
-    }
-
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         if indexPath.section == 5 {
             let ageRangeCell = AgeRangeCell(style: .default, reuseIdentifier: nil)
-            ageRangeCell.minSlider.addTarget(self, action: #selector(handleMinAgeChange), for: .valueChanged)
-            ageRangeCell.maxSlider.addTarget(self, action: #selector(handleMaxAgeChange), for: .valueChanged)
-            ageRangeCell.minLabel.text = "Min: \(user?.minSeekingAge ?? -1)"
-            ageRangeCell.maxLabel.text = "Min: \(user?.maxSeekingAge ?? -1)"
+            ageRangeCell.delegate = self
+            ageRangeCell.minValue = Float(user?.minSeekingAge ?? 0)
+            ageRangeCell.maxValue = Float(user?.maxSeekingAge ?? 0)
             return ageRangeCell
         }
 
         let cell = SettingsCell(style: .default, reuseIdentifier: nil)
+        cell.tag = indexPath.section
+        cell.delegate = self
         switch indexPath.section {
         case 1:
-            cell.textField.placeholder = "Enter Name"
-            cell.textField.text = user?.name
-            cell.textField.addTarget(self, action: #selector(handleNameChange), for: .editingChanged)
+            cell.placeholderCell = "Enter Name"
+            cell.textCell = user?.name
         case 2:
-            cell.textField.placeholder = "Enter Profession"
-            cell.textField.text = user?.profession
-            cell.textField.addTarget(self, action: #selector(handleProfessionChange), for: .editingChanged)
+            cell.placeholderCell = "Enter Profession"
+            cell.textCell = user?.profession
         case 3:
-            cell.textField.placeholder = "Enter Age"
+            cell.placeholderCell = "Enter Age"
             if let age = user?.age {
-                cell.textField.text = String(age)
-                cell.textField.addTarget(self, action: #selector(handleAgeChange), for: .editingChanged)
+                cell.textCell = String(age)
             }
 
         default:
-            cell.textField.placeholder = "Enter Bio"
+            cell.placeholderCell = "Enter Bio"
         }
         return cell
-    }
-
-    @objc fileprivate func handleNameChange(textField: UITextField) {
-        self.user?.name = textField.text
-    }
-
-    @objc fileprivate func handleProfessionChange(textField: UITextField) {
-        self.user?.profession = textField.text
-    }
-
-    @objc fileprivate func handleAgeChange(textField: UITextField) {
-        self.user?.age = Int(textField.text ?? "")
     }
 
     class HeaderLabel: UILabel {
@@ -294,5 +270,34 @@ extension SettingsController: UIImagePickerControllerDelegate, UINavigationContr
             }
         }
 
+    }
+}
+
+// MARK: AgeRangeCellDelegate
+
+extension SettingsController: AgeRangeCellDelegate {
+    
+    func ageRangeCell(_ ageRangeCell: AgeRangeCell, minAgeDidChange value: Float) {
+        self.user?.minSeekingAge = Int(value)
+    }
+
+    func ageRangeCell(_ ageRangeCell: AgeRangeCell, maxAgeDidChange value: Float) {
+        self.user?.maxSeekingAge = Int(value)
+    }
+}
+
+// MARK: SettingsCellDelegate
+
+extension SettingsController: SettingsCellDelegate {
+    func settingsCell(_ settingsCell: SettingsCell, textFieldEditingChanged value: String?) {
+        switch settingsCell.tag {
+        case 1: self.user?.name = value
+        case 2: self.user?.profession = value
+        case 3:
+            guard let age = Int(value ?? "") else { return }
+            self.user?.age = age
+        default:
+            break
+        }
     }
 }
