@@ -13,25 +13,20 @@ class CardView: UIView {
 
     var cardViewModel: CardViewModel! {
         didSet {
-            let imageName = cardViewModel.imageNames.first ?? ""
-            if let url = URL(string: imageName) {
+            if let imageName = cardViewModel.imageNames.first,
+                let url = URL(string: imageName) {
                 imageView.sd_setImage(with: url)
             }
 
             informationLabel.attributedText = cardViewModel.attributedString
             informationLabel.textAlignment = cardViewModel.textAligment
 
-            (0..<cardViewModel.imageNames.count).forEach { (_) in
-                let barView = UIView()
-                barView.backgroundColor = barDeselectionColor
-                barsStackView.addArrangedSubview(barView)
-            }
-            barsStackView.arrangedSubviews.first?.backgroundColor = .white
+            setBarsStackViewItems()
             setupImageIndexObserver()
         }
     }
 
-    fileprivate let imageView = UIImageView(image: #imageLiteral(resourceName: "lady5c.jpg"))
+    fileprivate let imageView = UIImageView()
     fileprivate let informationLabel = UILabel()
     fileprivate let gradientLayer = CAGradientLayer()
     fileprivate let threshold: CGFloat = 80
@@ -40,16 +35,29 @@ class CardView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-
         setupLayout()
-
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
-        addGestureRecognizer(panGesture)
+        addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePan)))
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        gradientLayer.frame = self.frame
+    }
+
+    // MARK: - Private
+
+    fileprivate func setBarsStackViewItems() {
+        (0..<cardViewModel.imageNames.count).forEach { _ in
+            let barView = UIView()
+            barView.backgroundColor = barDeselectionColor
+            barsStackView.addArrangedSubview(barView)
+        }
+        barsStackView.arrangedSubviews.first?.backgroundColor = .white
     }
 
     @objc fileprivate func handleTap(_ gesture: UITapGestureRecognizer) {
@@ -73,7 +81,7 @@ class CardView: UIView {
         case .ended:
             handleEnded(gesture)
         default:
-            ()
+            break
         }
     }
 
@@ -88,10 +96,8 @@ class CardView: UIView {
     }
 
     fileprivate func handleEnded(_ gesture: UIPanGestureRecognizer) {
-
         let translationDirection: CGFloat = gesture.translation(in: nil).x > 0 ? 1 : -1
         let shouldDismissCard = abs(gesture.translation(in: nil).x) > threshold
-
         UIView.animate(withDuration: 1,
                        delay: 0,
                        usingSpringWithDamping: 0.6,
@@ -109,8 +115,42 @@ class CardView: UIView {
             if shouldDismissCard {
                 self.removeFromSuperview()
             }
-            //self.frame = CGRect(x: 0, y: 0, width: self.superview!.frame.width, height: self.superview!.frame.height)
         }
+    }
+
+    fileprivate func setupLayout() {
+        layer.cornerRadius = 10
+        clipsToBounds = true
+
+        imageView.contentMode = .scaleAspectFill
+        addSubview(imageView)
+        imageView.fillSuperview()
+
+        setupBarsStackView()
+        setupGradientLayer()
+
+        addSubview(informationLabel)
+
+        informationLabel.anchor(top: nil,
+                                leading: leadingAnchor,
+                                bottom: bottomAnchor,
+                                trailing: trailingAnchor,
+                                padding: .init(top: 0, left: 16, bottom: 16, right: 16))
+
+        informationLabel.textColor = .white
+        informationLabel.numberOfLines = 0
+    }
+
+    fileprivate func setupBarsStackView() {
+        addSubview(barsStackView)
+        barsStackView.anchor(top: topAnchor,
+                             leading: leadingAnchor,
+                             bottom: nil,
+                             trailing: trailingAnchor,
+                             padding: .init(top: 8, left: 8, bottom: 0, right: 8), size: .init(width: 0, height: 4))
+
+        barsStackView.spacing = 4
+        barsStackView.distribution = .fillEqually
     }
 
     fileprivate func setupGradientLayer() {
@@ -119,50 +159,15 @@ class CardView: UIView {
         layer.addSublayer(gradientLayer)
     }
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        gradientLayer.frame = self.frame
-    }
-
-    fileprivate func setupLayout() {
-        layer.cornerRadius = 10
-        clipsToBounds = true
-
-
-        imageView.contentMode = .scaleAspectFill
-        addSubview(imageView)
-        imageView.fillSuperview()
-
-        setupBarsStackView()
-
-        //add gradient layer
-        setupGradientLayer()
-
-        addSubview(informationLabel)
-
-        informationLabel.anchor(top: nil, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 16, bottom: 16, right: 16))
-
-        informationLabel.textColor = .white
-        informationLabel.numberOfLines = 0
-    }
-
-    fileprivate func setupBarsStackView() {
-        addSubview(barsStackView)
-        barsStackView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 8, left: 8, bottom: 0, right: 8), size: .init(width: 0, height: 4))
-
-        barsStackView.spacing = 4
-        barsStackView.distribution = .fillEqually
-
-    }
-
     fileprivate func setupImageIndexObserver() {
         cardViewModel.imageIndexObserver = { [weak self] (idx, imageUrl) in
-            if let url = URL(string: imageUrl ?? "") {
+            guard let imageUrl = imageUrl else { return }
+            if let url = URL(string: imageUrl) {
                 self?.imageView.sd_setImage(with: url)
             }
 
-            self?.barsStackView.arrangedSubviews.forEach { (v) in
-                v.backgroundColor = self?.barDeselectionColor
+            self?.barsStackView.arrangedSubviews.forEach { view in
+                view.backgroundColor = self?.barDeselectionColor
             }
             self?.barsStackView.arrangedSubviews[idx].backgroundColor = .white
         }
