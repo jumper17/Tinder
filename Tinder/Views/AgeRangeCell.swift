@@ -17,20 +17,15 @@ final class AgeRangeCell: UITableViewCell {
 
     // MARK: Public
 
-    var minValue: Float {
-        set {
-            minSlider.value = newValue
-            minLabel.text = "Min: \(Int(minSlider.value))"
+    var viewModel: CellViewModelProtocol! {
+        didSet {
+            if let model = viewModel as? AgeRangeCellViewModelProtocol {
+                minSlider.value = model.minValue
+                maxSlider.value = model.maxValue
+                minLabel.text = "Min: \(Int(model.minValue))"
+                maxLabel.text = "Max: \(Int(model.maxValue))"
+            }
         }
-        get { minSlider.value }
-    }
-
-    var maxValue: Float {
-        set {
-            maxSlider.value = newValue
-            maxLabel.text = "Max: \(Int(maxSlider.value))"
-        }
-        get { maxSlider.value }
     }
 
     weak var delegate: AgeRangeCellDelegate?

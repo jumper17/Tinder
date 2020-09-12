@@ -32,6 +32,10 @@
 		A6C3D77E25083F82005FD412 /* CustomImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C3D77D25083F82005FD412 /* CustomImagePickerController.swift */; };
 		A6C3D78025083FE4005FD412 /* SettingsTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C3D77F25083FE4005FD412 /* SettingsTextField.swift */; };
 		A6C3D782250AC364005FD412 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C3D781250AC364005FD412 /* HomeViewModel.swift */; };
+		A6C3D784250D1672005FD412 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C3D783250D1672005FD412 /* SettingsViewModel.swift */; };
+		A6C3D786250D2787005FD412 /* SettingsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C3D785250D2787005FD412 /* SettingsCellViewModel.swift */; };
+		A6C3D788250D3407005FD412 /* AgeRangeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C3D787250D3407005FD412 /* AgeRangeCellViewModel.swift */; };
+		A6C3D78A250D36D9005FD412 /* HeaderLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C3D789250D36D9005FD412 /* HeaderLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +65,10 @@
 		A6C3D77D25083F82005FD412 /* CustomImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImagePickerController.swift; sourceTree = "<group>"; };
 		A6C3D77F25083FE4005FD412 /* SettingsTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTextField.swift; sourceTree = "<group>"; };
 		A6C3D781250AC364005FD412 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		A6C3D783250D1672005FD412 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		A6C3D785250D2787005FD412 /* SettingsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCellViewModel.swift; sourceTree = "<group>"; };
+		A6C3D787250D3407005FD412 /* AgeRangeCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeRangeCellViewModel.swift; sourceTree = "<group>"; };
+		A6C3D789250D36D9005FD412 /* HeaderLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderLabel.swift; sourceTree = "<group>"; };
 		B530DECAD26D58717593C5C6 /* Pods_Tinder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tinder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB359D3D6B1382F467C0E148 /* Pods-Tinder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tinder.release.xcconfig"; path = "Target Support Files/Pods-Tinder/Pods-Tinder.release.xcconfig"; sourceTree = "<group>"; };
 		D28DC1FDFEB384E492772D5B /* Pods-Tinder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tinder.debug.xcconfig"; path = "Target Support Files/Pods-Tinder/Pods-Tinder.debug.xcconfig"; sourceTree = "<group>"; };
@@ -112,6 +120,9 @@
 				A605EF9124EEFA4F000EBE43 /* CardViewModel.swift */,
 				A6C3D781250AC364005FD412 /* HomeViewModel.swift */,
 				A605EF9D24F2E093000EBE43 /* RegistrationViewModel.swift */,
+				A6C3D783250D1672005FD412 /* SettingsViewModel.swift */,
+				A6C3D785250D2787005FD412 /* SettingsCellViewModel.swift */,
+				A6C3D787250D3407005FD412 /* AgeRangeCellViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -172,6 +183,7 @@
 				A6C3D77B25083210005FD412 /* AgeRangeLabel.swift */,
 				A6C3D77D25083F82005FD412 /* CustomImagePickerController.swift */,
 				A6C3D77F25083FE4005FD412 /* SettingsTextField.swift */,
+				A6C3D789250D36D9005FD412 /* HeaderLabel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -303,6 +315,7 @@
 			files = (
 				A605EFA224F2FE47000EBE43 /* Bindable.swift in Sources */,
 				A605EF9424EF04EF000EBE43 /* Advertiser.swift in Sources */,
+				A6C3D788250D3407005FD412 /* AgeRangeCellViewModel.swift in Sources */,
 				A605EF9E24F2E093000EBE43 /* RegistrationViewModel.swift in Sources */,
 				A6C3D782250AC364005FD412 /* HomeViewModel.swift in Sources */,
 				A605EF9C24F2C7E6000EBE43 /* CustomTextField.swift in Sources */,
@@ -310,8 +323,10 @@
 				A690FAD224E9D1B5009DCB35 /* HomeController.swift in Sources */,
 				A6C3D77E25083F82005FD412 /* CustomImagePickerController.swift in Sources */,
 				A6C3D77C25083210005FD412 /* AgeRangeLabel.swift in Sources */,
+				A6C3D786250D2787005FD412 /* SettingsCellViewModel.swift in Sources */,
 				A690FACE24E9D1B5009DCB35 /* AppDelegate.swift in Sources */,
 				A693714F25017E2300E40B4A /* AgeRangeCell.swift in Sources */,
+				A6C3D78A250D36D9005FD412 /* HeaderLabel.swift in Sources */,
 				A605EF9824F2AF7B000EBE43 /* Extensions+UIView.swift in Sources */,
 				A690FAE624E9DE89009DCB35 /* HomeBottomControlsStackView.swift in Sources */,
 				A605EF9A24F2C36E000EBE43 /* RegistrationController.swift in Sources */,
@@ -321,6 +336,7 @@
 				A605EF9224EEFA4F000EBE43 /* CardViewModel.swift in Sources */,
 				A605EFAF24F594BF000EBE43 /* SettingsCell.swift in Sources */,
 				A6C3D78025083FE4005FD412 /* SettingsTextField.swift in Sources */,
+				A6C3D784250D1672005FD412 /* SettingsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

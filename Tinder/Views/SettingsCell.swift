@@ -16,18 +16,13 @@ final class SettingsCell: UITableViewCell {
 
     // MARK: Public
 
-    var textCell: String? {
-        set {
-            textField.text = newValue
+    var viewModel: CellViewModelProtocol! {
+        didSet {
+            if let viewModel = viewModel as? SettingsCellViewModelProtocol {
+                textField.text = viewModel.text
+                textField.placeholder = viewModel.placeholder
+            }
         }
-        get { textField.text }
-    }
-
-    var placeholderCell: String? {
-        set {
-            textField.placeholder = newValue
-        }
-        get { textField.placeholder }
     }
 
     weak var delegate: SettingsCellDelegate?

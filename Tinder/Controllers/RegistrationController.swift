@@ -12,7 +12,7 @@ import JGProgressHUD
 
 class RegistrationController: UIViewController {
 
-    let selectPhotoButton: UIButton = {
+    fileprivate let selectPhotoButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Select Photo", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 32, weight: .heavy)
@@ -26,14 +26,14 @@ class RegistrationController: UIViewController {
         return button
     }()
 
-    let fullNameTextField: CustomTextField = {
+    fileprivate let fullNameTextField: CustomTextField = {
         let tf = CustomTextField(padding: 16)
         tf.placeholder = "Enter full name"
         tf.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         return tf
     }()
 
-    let emailTextField: CustomTextField = {
+    fileprivate let emailTextField: CustomTextField = {
         let tf = CustomTextField(padding: 16)
         tf.placeholder = "Enter email"
         tf.keyboardType = .emailAddress
@@ -41,7 +41,7 @@ class RegistrationController: UIViewController {
         return tf
     }()
 
-    let passwordTextField: CustomTextField = {
+    fileprivate let passwordTextField: CustomTextField = {
         let tf = CustomTextField(padding: 16)
         tf.placeholder = "Enter password"
         tf.isSecureTextEntry = true
@@ -49,11 +49,10 @@ class RegistrationController: UIViewController {
         return tf
     }()
 
-    let registerButton: UIButton = {
+    fileprivate let registerButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Register", for: .normal)
         button.setTitleColor(.white, for: .normal)
-       // button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
         button.backgroundColor = .lightGray
         button.setTitleColor(.gray, for: .disabled)
         button.isEnabled = false
@@ -63,8 +62,27 @@ class RegistrationController: UIViewController {
         return button
     }()
 
+    fileprivate lazy var verticalStackView: UIStackView = {
+        let sv =  UIStackView(arrangedSubviews: [
+            fullNameTextField,
+            emailTextField,
+            passwordTextField,
+            registerButton
+        ])
+        sv.axis = .vertical
+        sv.distribution = .fillEqually
+        sv.spacing = 8
+        return sv
+    }()
+
+    fileprivate lazy var overallStackView = UIStackView(arrangedSubviews: [
+        selectPhotoButton,
+        verticalStackView
+    ])
+
     fileprivate let gradientLayer = CAGradientLayer()
     fileprivate let registrationViewModel = RegistrationViewModel()
+    fileprivate let registeringHUD = JGProgressHUD(style: .dark)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,6 +96,11 @@ class RegistrationController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self)
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        gradientLayer.frame = view.bounds
     }
 
     // MARK: - Private
@@ -109,8 +132,6 @@ class RegistrationController: UIViewController {
         }
 
     }
-
-    let registeringHUD = JGProgressHUD(style: .dark)
 
     @objc fileprivate func handleRegister() {
         self.handleTap()
@@ -165,24 +186,6 @@ class RegistrationController: UIViewController {
         self.view.transform = CGAffineTransform(translationX: 0, y: -difference - 8)
     }
 
-    lazy var verticalStackView: UIStackView = {
-        let sv =  UIStackView(arrangedSubviews: [
-            fullNameTextField,
-            emailTextField,
-            passwordTextField,
-            registerButton
-        ])
-        sv.axis = .vertical
-        sv.distribution = .fillEqually
-        sv.spacing = 8
-        return sv
-    }()
-
-    lazy var overallStackView = UIStackView(arrangedSubviews: [
-        selectPhotoButton,
-        verticalStackView
-    ])
-
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         if self.traitCollection.verticalSizeClass == .compact {
             overallStackView.axis = .horizontal
@@ -198,11 +201,6 @@ class RegistrationController: UIViewController {
         selectPhotoButton.widthAnchor.constraint(equalToConstant: 275).isActive = true
         overallStackView.anchor(top: nil, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 0, left: 50, bottom: 0, right: 50))
         overallStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-    }
-
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        gradientLayer.frame = view.bounds
     }
 
     fileprivate func setupGradientLayer() {

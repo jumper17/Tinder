@@ -47,10 +47,10 @@ class HomeViewModel: HomeViewModelProtocol {
         let query = firestore.collection(collection).whereField("age", isGreaterThanOrEqualTo: minAge).whereField("age", isLessThanOrEqualTo: maxAge)
         query.getDocuments { (snapshot, error) in
             if let error = error {
-                print("Failed to fetch users:", error)
                 completion(error)
                 return
             }
+            self.allUsers = []
             snapshot?.documents.forEach({ documentSnapchot in
                 let user = self.makeUserFromSnapshot(documentSnapchot)
                 self.allUsers.append(user)
