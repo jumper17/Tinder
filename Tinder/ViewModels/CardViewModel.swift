@@ -38,14 +38,10 @@ class CardViewModel: CardViewModelProtocol {
         }
     }
 
-    let imgNames: [String]
-    let string: NSAttributedString
-    let aligment: NSTextAlignment
-    var imageIndexObserver: ((Int, String?) -> ())? {
-        didSet {
-            
-        }
-    }
+    fileprivate let imgNames: [String]
+    fileprivate let string: NSAttributedString
+    fileprivate let aligment: NSTextAlignment
+    var imageIndexObserver: ((Int, String?) -> ())?
 
     init(imgNames: [String], string: NSAttributedString, aligment: NSTextAlignment) {
         self.imgNames = imgNames
