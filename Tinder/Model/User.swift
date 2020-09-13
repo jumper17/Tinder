@@ -13,7 +13,6 @@ struct User: ProducesCardViewModel {
     var name: String?
     var age: Int?
     var profession: String?
-    //let imageNames: [String]
     var imageUrl1: String?
     var imageUrl2: String?
     var imageUrl3: String?
@@ -34,7 +33,6 @@ struct User: ProducesCardViewModel {
         self.maxSeekingAge = dictionary["maxSeekingAge"] as? Int
     }
 
-
     func toCardViewModel() -> CardViewModel {
         let attributedText = NSMutableAttributedString(string: name ?? "", attributes: [.font: UIFont.systemFont(ofSize: 32, weight: .heavy)])
 
@@ -51,6 +49,6 @@ struct User: ProducesCardViewModel {
         if let url = imageUrl2 { imageUrls.append(url) }
         if let url = imageUrl3 { imageUrls.append(url) }
 
-        return CardViewModel(imageNames: imageUrls, attributedString: attributedText, textAligment: .left)
+        return CardViewModel(imgNames: imageUrls, string: attributedText, aligment: .left)
     }
 }

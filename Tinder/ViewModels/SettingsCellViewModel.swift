@@ -32,6 +32,4 @@ class SettingsCellViewModel: SettingsCellViewModelProtocol {
     var text: String? {
         return textCell
     }
-
-
 }

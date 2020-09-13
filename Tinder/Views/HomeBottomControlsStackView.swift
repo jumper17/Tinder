@@ -8,20 +8,26 @@
 
 import UIKit
 
+protocol HomeBottomControlsStackViewDelegate: class {
+    func homeBottomControlsStackViewRefreshButtonDidTap(_ stackView: HomeBottomControlsStackView)
+}
+
 class HomeBottomControlsStackView: UIStackView {
 
-    static func createButton(image: UIImage) -> UIButton {
+    private static func createButton(image: UIImage) -> UIButton {
         let button = UIButton(type: .system)
         button.setImage(image.withRenderingMode(.alwaysOriginal), for: .normal)
         button.imageView?.contentMode = .scaleAspectFill
         return button
     }
 
-    let refreshButton = createButton(image: #imageLiteral(resourceName: "refresh_circle"))
-    let dislikeButton = createButton(image: #imageLiteral(resourceName: "dismiss_circle"))
-    let superLikeButton = createButton(image: #imageLiteral(resourceName: "super_like_circle"))
-    let likeButton = createButton(image: #imageLiteral(resourceName: "like_circle"))
-    let specialButton = createButton(image: #imageLiteral(resourceName: "boost_circle"))
+    weak var delegate: HomeBottomControlsStackViewDelegate?
+
+    private let refreshButton = createButton(image: #imageLiteral(resourceName: "refresh_circle"))
+    private let dislikeButton = createButton(image: #imageLiteral(resourceName: "dismiss_circle"))
+    private let superLikeButton = createButton(image: #imageLiteral(resourceName: "super_like_circle"))
+    private let likeButton = createButton(image: #imageLiteral(resourceName: "like_circle"))
+    private let specialButton = createButton(image: #imageLiteral(resourceName: "boost_circle"))
 
 
     override init(frame: CGRect) {
@@ -30,10 +36,15 @@ class HomeBottomControlsStackView: UIStackView {
         distribution = .fillEqually
 
         heightAnchor.constraint(equalToConstant: 100).isActive = true
-        [refreshButton, dislikeButton, superLikeButton, likeButton, specialButton].forEach { (button) in
+        [refreshButton, dislikeButton, superLikeButton, likeButton, specialButton].forEach { button in
             addArrangedSubview(button)
         }
+        refreshButton.addTarget(self, action: #selector(handleRefresh), for: .touchUpInside)
 
+    }
+
+    @objc fileprivate func handleRefresh() {
+        delegate?.homeBottomControlsStackViewRefreshButtonDidTap(self)
     }
 
     required init(coder: NSCoder) {

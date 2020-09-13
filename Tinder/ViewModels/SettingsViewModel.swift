@@ -32,7 +32,6 @@ class SettingsViewModel: SettingsViewModelProtocol {
     private let storage = Storage.storage()
     private let firestore = Firestore.firestore()
 
-
     private let headerLabels = [nil, "Name", "Profession", "Age", "Bio", "Seeking Age Range"]
     private let placeholdersCell = [nil, "Enter Name", "Enter Profession", "Enter Age", "Enter Bio"]
 

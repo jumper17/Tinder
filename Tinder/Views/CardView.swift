@@ -11,7 +11,7 @@ import SDWebImage
 
 class CardView: UIView {
 
-    var cardViewModel: CardViewModel! {
+    var cardViewModel: CardViewModelProtocol! {
         didSet {
             if let imageName = cardViewModel.imageNames.first,
                 let url = URL(string: imageName) {

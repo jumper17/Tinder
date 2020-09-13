@@ -130,7 +130,6 @@ class RegistrationController: UIViewController {
                 self.registeringHUD.dismiss()
             }
         }
-
     }
 
     @objc fileprivate func handleRegister() {

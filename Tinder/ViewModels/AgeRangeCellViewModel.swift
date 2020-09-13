@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol AgeRangeCellViewModelProtocol: CellViewModelProtocol{
+protocol AgeRangeCellViewModelProtocol: CellViewModelProtocol {
     var minValue: Float { get }
     var maxValue: Float { get }
 }
@@ -30,5 +30,4 @@ class AgeRangeCellViewModel: AgeRangeCellViewModelProtocol {
     var maxValue: Float {
         return Float(maxSeekingAge ?? 0)
     }
-
 }

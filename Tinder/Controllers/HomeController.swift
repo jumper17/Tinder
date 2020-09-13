@@ -20,8 +20,8 @@ class HomeController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = HomeViewModel()
-        topStackView.settingsButton.addTarget(self, action: #selector(handleSettings), for: .touchUpInside)
-        bottomControl.refreshButton.addTarget(self, action: #selector(handleRefresh), for: .touchUpInside)
+        topStackView.delegate = self
+        bottomControl.delegate = self
         setupLayout()
         fetchCurrentUser()
     }
@@ -53,10 +53,6 @@ class HomeController: UIViewController {
         }
     }
 
-    @objc fileprivate func handleRefresh() {
-        fetchAllUsers()
-    }
-
     fileprivate func setupCard() {
         self.viewModel?.cardViewModels.forEach({ [weak self] cardViewModel in
             let cardView = CardView(frame: .zero)
@@ -65,13 +61,6 @@ class HomeController: UIViewController {
             self?.cardsDeckView.sendSubviewToBack(cardView)
             cardView.fillSuperview()
         })
-    }
-
-    @objc func handleSettings() {
-        let settingsController = SettingsController()
-        settingsController.delegate = self
-        let navController = UINavigationController(rootViewController: settingsController)
-        present(navController, animated: true, completion: nil)
     }
 
     fileprivate func setupLayout() {
@@ -93,5 +82,20 @@ class HomeController: UIViewController {
 extension HomeController: SettingsControllerDelegate {
     func didSaveSettings() {
         fetchCurrentUser()
+    }
+}
+
+extension HomeController: HomeBottomControlsStackViewDelegate {
+    func homeBottomControlsStackViewRefreshButtonDidTap(_ stackView: HomeBottomControlsStackView) {
+        fetchAllUsers()
+    }
+}
+
+extension HomeController: TopNavigationStackViewDelegate {
+    func topNavigationStackViewSettingsButtonDidTap(_ stackView: TopNavigationStackView) {
+        let settingsController = SettingsController()
+        settingsController.delegate = self
+        let navController = UINavigationController(rootViewController: settingsController)
+        present(navController, animated: true, completion: nil)
     }
 }

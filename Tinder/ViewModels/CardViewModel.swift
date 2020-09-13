@@ -8,33 +8,53 @@
 
 import UIKit
 
-protocol ProducesCardViewModel {
-    func toCardViewModel() -> CardViewModel
+protocol CardViewModelProtocol {
+    var imageNames: [String] { get }
+    var attributedString: NSAttributedString { get }
+    var textAligment: NSTextAlignment { get }
+    var imageIndexObserver: ((Int, String?) -> ())? { get set }
+    func advanceToNextPhoto()
+    func goToPreviousPhoto()
 }
 
-class CardViewModel {
+class CardViewModel: CardViewModelProtocol {
+
+    var imageNames: [String] {
+        return imgNames
+    }
+
+    var attributedString: NSAttributedString {
+        return string
+    }
+
+    var textAligment: NSTextAlignment {
+        return aligment
+    }
 
     fileprivate var imageIndex = 0 {
         didSet {
-            let imageUrl = imageNames[imageIndex]
+            let imageUrl = imgNames[imageIndex]
             imageIndexObserver?(imageIndex, imageUrl)
         }
     }
 
-    let imageNames: [String]
-    let attributedString: NSAttributedString
-    let textAligment: NSTextAlignment
-
-    init(imageNames: [String], attributedString: NSAttributedString, textAligment: NSTextAlignment) {
-        self.imageNames = imageNames
-        self.attributedString = attributedString
-        self.textAligment = textAligment
+    let imgNames: [String]
+    let string: NSAttributedString
+    let aligment: NSTextAlignment
+    var imageIndexObserver: ((Int, String?) -> ())? {
+        didSet {
+            
+        }
     }
 
-    var imageIndexObserver: ((Int, String?) -> ())?
+    init(imgNames: [String], string: NSAttributedString, aligment: NSTextAlignment) {
+        self.imgNames = imgNames
+        self.string = string
+        self.aligment = aligment
+    }
 
     func advanceToNextPhoto() {
-        imageIndex = min(imageIndex + 1, imageNames.count - 1)
+        imageIndex = min(imageIndex + 1, imgNames.count - 1)
     }
 
     func goToPreviousPhoto() {
