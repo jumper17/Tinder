@@ -119,86 +119,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1979B9FA-5688-48DB-9D8F-C87096655A9F"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Tinder/Controllers/HomeController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
-            landmarkName = "fetchCurrentUser()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "1806BD6C-86E2-4663-9F1E-93788AEDF920"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Tinder/Controllers/HomeController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
-            landmarkName = "fetchAllUsers()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "4E6C2ADF-3840-4AEA-B5ED-88D4C8222618"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Tinder/Controllers/HomeController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "fetchCurrentUser()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "4E6C2ADF-3840-4AEA-B5ED-88D4C8222618 - 785e7a9fac8bca1f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Tinder.HomeController.(fetchCurrentUser in _FC02B18254A1089E3BFC5333A357F0F2)() -&gt; ()"
-                  moduleName = "Tinder"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/v.pavlov/Desktop/iosApprentice/Tinder/Tinder/Controllers/HomeController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "38"
-                  endingLineNumber = "38"
-                  offsetFromSymbolStart = "44">
-               </Location>
-               <Location
-                  uuid = "4E6C2ADF-3840-4AEA-B5ED-88D4C8222618 - 92b2b0d502f07c6c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Tinder.HomeController.(fetchCurrentUser in _FC02B18254A1089E3BFC5333A357F0F2)() -&gt; ()"
-                  moduleName = "Tinder"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/v.pavlov/Desktop/iosApprentice/Tinder/Tinder/Controllers/HomeController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "38"
-                  endingLineNumber = "38"
-                  offsetFromSymbolStart = "83">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "C4B220D8-38C3-40BA-85AB-626C907B34F9"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -318,8 +238,8 @@
             filePath = "Tinder/Controllers/HomeController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
             landmarkName = "setupCard()"
             landmarkType = "7">
          </BreakpointContent>

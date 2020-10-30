@@ -23,34 +23,19 @@ class HomeController: UIViewController {
         topStackView.delegate = self
         bottomControl.delegate = self
         setupLayout()
-        fetchCurrentUser()
+        bindUsers()
+        viewModel?.fetchUsers()
     }
 
     // MARK: - Fileprivate
 
-    fileprivate func fetchCurrentUser() {
-        viewModel?.fetchCurrentUser { [weak self] error in
-            guard error == nil else {
-                print("Failed to fetch current user:", error!)
-                return
-            }
-            self?.fetchAllUsers()
-        }
-    }
-
-    fileprivate func fetchAllUsers() {
+    fileprivate func bindUsers() {
         let hud = JGProgressHUD(style: .dark)
         hud.textLabel.text = "Fetching Users"
         hud.show(in: self.view)
 
-        viewModel?.fetchAllUsers { [weak self] error in
-            hud.dismiss()
-            guard error == nil else {
-                print("Failed to fetch users:", error!)
-                return
-            }
-            self?.setupCard()
-        }
+        viewModel?.bindableUsersIsFetched.bind { _ in hud.dismiss() }
+
     }
 
     fileprivate func setupCard() {
